@@ -1,33 +1,32 @@
-// const Hapi = require('hapi');
-const server = require(__dirname + '/../server');
 const Planet = require(__dirname + '/../model/model.js');
 
-server.route({
+module.exports = [
+{
   method: 'GET',
   path: '/planets',
   handler: function(request, reply) {
 
-    Planet.find((err, docs) => {
-
-       if (err) {
-         return reply(err);
-       }
-       reply(docs);
-    });
-  }
-});
-
-server.route({
-  method: 'POST',
-  path: '/planets',
-  handler: function(request, reply) {
-
-    Planet.save(request.payload, (err, result) => {
+    Planet.find({}, (err, docs) => {
 
       if (err) {
         return reply(err);
       }
-      reply(request.payload);
+      return reply(docs);
     });
   }
-});
+},
+
+{
+  method: 'POST',
+  path: '/planets',
+  handler: function(req, reply) {
+    var newPlanet = new Planet(req.payload);
+    newPlanet.save((err, newPlanet) => {
+      if (err) {
+        return reply(err);
+      }
+      reply(newPlanet).created('/planets/' + newPlanet._id);
+    });
+  }
+}
+];
