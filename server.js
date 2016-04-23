@@ -1,7 +1,11 @@
 const Hapi = require('hapi');
+const mongoose = require('mongoose');
+const router = require(__dirname + '/routes/router');
+
+mongoose.connect('mongodb://localhost/planet_db');
 
 //Create a server with a host and port
-const server = new Hapi.Server();
+const server = module.exports = new Hapi.Server();
 server.connection( {
   port: 3000
 });
