@@ -1,5 +1,6 @@
 const Hapi = require('hapi');
 const mongoose = require('mongoose');
+const router = require(__dirname + '/routes/router');
 
 mongoose.connect('mongodb://localhost/planet_db');
 
