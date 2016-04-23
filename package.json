@@ -1,5 +1,5 @@
 {
-  "name": "hapi-framwork",
+  "name": "hapi-framework",
   "version": "1.0.0",
   "description": "A one resource server using hapi.js",
   "main": "index.js",
@@ -7,15 +7,15 @@
     "test": "test"
   },
   "dependencies": {
+    "hapi": "^13.3.0",
+    "mongoose": "^4.4.13"
+  },
+  "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
     "gulp": "^3.9.1",
     "gulp-eslint": "^2.0.0",
     "gulp-mocha": "^2.2.0",
-    "hapi": "^13.3.0",
-    "mongoose": "^4.4.13"
-  },
-  "devDependencies": {
     "mocha": "^2.4.5"
   },
   "scripts": {
@@ -28,9 +28,13 @@
   },
   "keywords": [
     "hapi",
-    "framwork"
+    "framework"
   ],
-  "author": "Katherine Beame",
+  "author": [
+    "Katherine Beame",
+    "Rachel Burke",
+    "Shelly Y"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/trying-hapi/hapi-framwork/issues"
