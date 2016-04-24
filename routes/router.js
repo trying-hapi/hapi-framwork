@@ -51,7 +51,7 @@ module.exports = [
 
 {
   method: 'DELETE',
-  path: '/panets/{name}',
+  path: '/planets/{name}',
   handler: function(req, reply) {
     Planet.findOne({ 'name': req.params.name }, (err, planet) => {
       if (err) {
