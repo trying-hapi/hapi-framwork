@@ -47,5 +47,21 @@ module.exports = [
       });
     });
   }
+},
+
+{
+  method: 'DELETE',
+  path: '/panets/{name}',
+  handler: function(req, reply) {
+    Planet.findOne({ 'name': req.params.name }, (err, planet) => {
+      if (err) {
+      return reply(err);
+    }
+      if (planet) {
+        planet.remove();
+        return reply({ message: 'OMG! We destroyed a planet!' });
+      }
+    });
+  }
 }
 ];
