@@ -4,10 +4,8 @@ module.exports = [
 {
   method: 'GET',
   path: '/planets',
-  handler: function(request, reply) {
-
+  handler: function(req, reply) {
     Planet.find({}, (err, docs) => {
-
       if (err) {
         return reply(err);
       }
@@ -26,6 +24,27 @@ module.exports = [
         return reply(err);
       }
       reply(newPlanet).created('/planets/' + newPlanet._id);
+    });
+  }
+},
+
+{
+  method: 'PUT',
+  path: '/planets/{name}',
+  handler: function(req, reply) {
+    Planet.findOne({ 'name': req.params.name }, (err, planet) => {
+      if (err) {
+        return reply(err);
+      }
+      planet.color = req.payload.color;
+      planet.size = req.payload.size;
+      planet.moonsNumber = req.payload.moonsNumber;
+      planet.save((err, planet) => {
+        if (err) {
+          return reply(err);
+        }
+        return reply(planet);
+      });
     });
   }
 }
