@@ -7,7 +7,7 @@ var files = ['test/**/*.js', 'server.js', 'gulpfile.js', 'router/**/*.js', 'mode
 gulp.task('lint:test', () => {
   return gulp.src(files)
   .pipe(eslint({
-    'useeslintrc': true
+    'useEslintrc': true
   }))
   .pipe(eslint.format());
 });
