@@ -47,7 +47,8 @@ it('should get the planets', (done)=>{
 
 describe('routes that need a planet in the db', ()=>{
   beforeEach((done)=>{
-    var newPlanet = new Planet({name:'Vulcan', color: 'greenish', size:'earth-like', moonsNumber:0})
+    var newPlanet = new Planet({name:'Vulcan', color: 'greenish', size:'earth-like', moonsNumber:0});
+    // console.log(this.planet.name);
     newPlanet.save((err, data)=>{
       this.planet = data;
           done();
@@ -70,15 +71,12 @@ after((done)=>{
 it('should the Put', (done)=>{
   request('localhost:3000')
   .put('/planets/' + this.planet.name)
-  .send({name:'Vulcan1', color: 'greenish1', size:'earth-like1', moonsNumber:0})
+  .send({name:'Vulcan', color: 'greenish1', size:'earth-like1', moonsNumber:0})
   .end((err, res)=>{
     expect(err).to.eql(null);
-    console.log(err);
-    // expect(res.body.name).to.eql('Vulcan1');
-    // expect(res.body.color).to.eql('greenish1');
-    // expect(res.body.size).to.eql('earth-like1');
-    // expect(res.body.moonsNumber).to.eql(0);
-    expect(res.body.message).to.eql('WOW! SUCH PLANET!')
+    expect(res.body.color).to.eql('greenish1');
+    expect(res.body.size).to.eql('earth-like1');
+    expect(res.body.moonsNumber).to.eql(0);
     done();
   });
 });
