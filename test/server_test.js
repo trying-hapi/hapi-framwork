@@ -43,16 +43,16 @@ it('should get the planets', (done)=>{
 
 
 
-
-handler: function(req, reply) {
-  var newPlanet = new Planet(req.payload);
-  newPlanet.save((err, newPlanet) => {
-    if (err) {
-      return reply(err);
-    }
-    reply(newPlanet).created('/planets/' + newPlanet._id);
-  });
-}
+// 
+// handler: function(req, reply) {
+//   var newPlanet = new Planet(req.payload);
+//   newPlanet.save((err, newPlanet) => {
+//     if (err) {
+//       return reply(err);
+//     }
+//     reply(newPlanet).created('/planets/' + newPlanet._id);
+//   });
+// }
 
 describe('routes that need a planet in the db', ()=>{
   beforeEach((done)=>{
