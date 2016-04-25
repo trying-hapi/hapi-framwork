@@ -37,7 +37,7 @@ it('should get the planets', (done)=>{
   .get('/planets')
   .end((err, res)=>{
     expect(err).to.eql(null);
-    expect(Array.isArray()).to.eql(true);
+    expect(Array.isArray(res.body)).to.eql(true);
     expect(res.body.length).to.eql(0);
     done();
   });
@@ -45,21 +45,15 @@ it('should get the planets', (done)=>{
 });
 
 
-//
-//
-//
 describe('routes that need a planet in the db', ()=>{
-
   beforeEach((done)=>{
-    var newPlanet = new Planet({name:'Qo\'noS', color: 'green', size:'earth-like', moonsNumber:0})
+    var newPlanet = new Planet({name:'Vulcan', color: 'greenish', size:'earth-like', moonsNumber:0})
     newPlanet.save((err, data)=>{
-      // console.log(data);
       this.planet = data;
           done();
     });
-
   });
-// });
+
 
 afterEach((done)=>{
 this.planet.remove((err)=>{
@@ -75,29 +69,27 @@ after((done)=>{
 
 it('should the Put', (done)=>{
   request('localhost:3000')
-  .put('/planets/' + this.planet._id)
+  .put('/planets/' + this.planet.name)
   .send({name:'Vulcan', color: 'greenish', size:'earth-like', moonsNumber:0})
   .end((err, res)=>{
-    // console.log(err);
     expect(err).to.eql(null);
     console.log(err);
-    // expect(res.body.color).to.eql('green');
+    expect(res.body.name).to.eql('Vulcan');
+    expect(res.body.color).to.eql('greenish');
+    expect(res.body.size).to.eql('earth-like');
+    expect(res.body.moonsNumber).to.eql(0);
     done();
   });
-    done();
 });
-
 
 
 it('should DELETE', (done)=>{
   request('localhost:3000')
-  .delete('/planets/' + this.planet._id)
+  .delete('/planets/' + this.planet.name)
   .end((err, res)=>{
-    // console.log(err);
     expect(err).to.eql(null);
     expect(res.body.message).to.eql('OMG! We destroyed a planet!');
     done();
   });
 });
-
 });
