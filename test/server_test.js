@@ -20,9 +20,12 @@ it('should make a solar system', (done)=>{
   request('localhost:3000')
   .post('/planets')
   .send({name:'Qo\'noS', color: 'green', size:'earth-like', moonsNumber:0})
-  .end((err, reply)=>{
+  .end((err, res)=>{
     expect(err).to.eql(null);
-    expect(req.payload.color).to.eql('green');
+    expect(res.body.color).to.eql('green');
+    expect(res.body.name).to.eql('Qo\'noS');
+    expect(res.body.size).to.eql('earth-like');
+    expect(res.body.moonsNumber).to.eql(0);
     done();
   });
 });
@@ -35,76 +38,62 @@ it('should get the planets', (done)=>{
   .end((err, res)=>{
     expect(err).to.eql(null);
     expect(Array.isArray()).to.eql(true);
-    // expect(length).to.eql(0);
+    expect(res.body.length).to.eql(0);
     done();
   });
 });
 });
-
-
-
-// 
-// handler: function(req, reply) {
-//   var newPlanet = new Planet(req.payload);
-//   newPlanet.save((err, newPlanet) => {
-//     if (err) {
-//       return reply(err);
-//     }
-//     reply(newPlanet).created('/planets/' + newPlanet._id);
-//   });
-// }
-
-describe('routes that need a planet in the db', ()=>{
-  beforeEach((done)=>{
-    var newPlanet = new Planet(req.payload)
-    newPlanet.save((err,data)=>{
-          console.log(data);
-      newPlanet = data;
-
-
-          done();
-    })
-
-  });
-});
-
-afterEach((done)=>{
-  newPlanet.remove((err)=>{
-    done();
-  });
-});
-
-after((done)=>{
-  mongoose.connection.db.dropDatabase(()=>{
-    done();
-  });
-});
-
-it('should the Put', (done)=>{
-  request('localhost:3000')
-  .put('/planets' + newPlanet._id)
-  .send({name:'Qo\'noS', color: 'green', size:'earth-like', moonsNumber:0})
-  .end((err, res)=>{
-    expect(err).to.eql(null);
-    done();
-  });
-});
-
-
-
-
 
 
 //
-
-it('should DELETE', (done)=>{
-  request('localhost:3000')
-  .delete('/planets' + newPlanet._id)
-  .end((err, reply)=>{
-    expect(err).to.eql(null);
-    expect(reply).to.eql('OMG! We destroyed a planet!');
-    done();
-  });
-});
-
+//
+//
+// describe('routes that need a planet in the db', ()=>{
+//
+//   beforeEach((done)=>{
+//     var newPlanet = new Planet({name:'Qo\'noS', color: 'green', size:'earth-like', moonsNumber:0})
+//     newPlanet.save((err, data)=>{
+//       this.planet = data;
+//
+//           done();
+//     });
+//
+//   });
 // });
+//
+// afterEach((done)=>{
+// this.planet.remove((err)=>{
+//     done();
+//   });
+// });
+// //
+// after((done)=>{
+//   mongoose.connection.db.dropDatabase(()=>{
+//     done();
+//   });
+// });
+//
+// it('should the Put', (done)=>{
+//   request('localhost:3000')
+//   .put('/planets' + this.planet._id)
+//   .send({name:'Qo\'noS', color: 'green', size:'earth-like', moonsNumber:0})
+//   .end((err, res)=>{
+//     expect(err).to.eql(null);
+//     expect(res.body.color).to.eql('earth-like');
+//     done();
+//   });
+// });
+//
+//
+//
+// it('should DELETE', (done)=>{
+//   request('localhost:3000')
+//   .delete('/planets' + newPlanet._id)
+//   .end((err, reply)=>{
+//     expect(err).to.eql(null);
+//     expect(reply).to.eql('OMG! We destroyed a planet!');
+//     done();
+//   });
+// });
+//
+// // });
