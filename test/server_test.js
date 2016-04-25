@@ -22,11 +22,67 @@ it('should make a solar system', (done)=>{
   .send({name:'Qo\'noS', color: 'green', size:'earth-like', moonsNumber:0})
   .end((err, res)=>{
     expect(err).to.eql(null);
+    // expect(req.payload.color).to.eql('green');
     done();
   });
 });
 
 
+describe('the GET', (done)=>{
+it('should get the planets', (done)=>{
+  request('localhost:3000')
+  .get('/planets')
+  .end((err, res)=>{
+    expect(err).to.eql(null);
+    // expect(Array.isArray()).to.eql(true);
+    // expect(.length).to.eql(0);
+    done();
+  });
+});
+});
 
+describe('routes that need a planet in the db', ()=>{
+  beforeEach((done)=>{
+    var newPlanet = new Planet({name:'Qo\'noS', color: 'green', size:'earth-like', moonsNumber:0})
+    newPlanet.save((err,data)=>{
+      this.planet = data;
+
+          done();
+    })
+
+  });
+});
+
+afterEach((done)=>{
+  this.planet.remove((err)=>{
+    done();
+  });
+});
+
+after((done)=>{
+  mongoose.connection.db.dropDatabase(()=>{
+    done();
+  });
+});
+
+it('should the Put', (done)=>{
+  request('localhost:3000')
+  .put('/planets' + this.planet._id)
+  .send({name:'Qo\'noS', color: 'green', size:'earth-like', moonsNumber:0})
+  .end((err, res)=>{
+    expect(err).to.eql(null);
+    done();
+  });
+});
+
+it('should DELETE', (done)=>{
+  request('localhost:3000')
+  .delete('/planets' + this.planet._id)
+  .end((err, res)=>{
+    expect(err).to.eql(null);
+    expect().to.eql('body message');
+    done();
+  });
+});
 
 });
