@@ -1,10 +1,10 @@
 const gulp = require('gulp');
-const eslint = require('eslint');
+const eslint = require('gulp-eslint');
 const mocha = require('gulp-mocha');
 
 var files = ['test/**/*.js', 'server.js', 'gulpfile.js'];
 
-gulp.task('lint: test', () => {
+gulp.task('lint:test', () => {
   return gulp.src(files)
   .pipe(eslint({
     'useEslintrc': true
@@ -12,7 +12,7 @@ gulp.task('lint: test', () => {
   .pipe(eslint.format());
 });
 
-gulp.task('mocha: test', () => {
+gulp.task('mocha:test', () => {
   return gulp.src(files)
   .pipe(mocha());
 });
