@@ -1,4 +1,4 @@
-# hapi-framwork
+# hapi-framework
 Using Hapi as our Server-Side Framework
 ## Synopsis
 Used Hapi Framework and MongoDB/Mongoose to build a single resource REST application. Handles basic CRUD for planets.
@@ -29,4 +29,4 @@ Shelly Yusuf
   * https://github.com/Cron-J/Hapi-Mongoose-Angular-Node.js/tree/master/server
 
 ## License
-We used the MIT license 
+We used the MIT license
