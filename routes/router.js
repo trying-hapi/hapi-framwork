@@ -43,7 +43,8 @@ module.exports = [
         if (err) {
           return reply(err);
         }
-        return reply(planet);
+        // return reply(planet);
+              return reply({message: 'WOW! SUCH PLANET!'});
       });
     });
   }

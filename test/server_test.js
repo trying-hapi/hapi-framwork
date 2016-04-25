@@ -60,7 +60,7 @@ this.planet.remove((err)=>{
     done();
   });
 });
-//
+
 after((done)=>{
   mongoose.connection.db.dropDatabase(()=>{
     done();
@@ -74,10 +74,11 @@ it('should the Put', (done)=>{
   .end((err, res)=>{
     expect(err).to.eql(null);
     console.log(err);
-    expect(res.body.name).to.eql('Vulcan1');
-    expect(res.body.color).to.eql('greenish1');
-    expect(res.body.size).to.eql('earth-like1');
-    expect(res.body.moonsNumber).to.eql(0);
+    // expect(res.body.name).to.eql('Vulcan1');
+    // expect(res.body.color).to.eql('greenish1');
+    // expect(res.body.size).to.eql('earth-like1');
+    // expect(res.body.moonsNumber).to.eql(0);
+    expect(res.body.message).to.eql('WOW! SUCH PLANET!')
     done();
   });
 });
