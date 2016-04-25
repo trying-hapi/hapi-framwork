@@ -70,11 +70,10 @@ after((done)=>{
 it('should the Put', (done)=>{
   request('localhost:3000')
   .put('/planets/' + this.planet.name)
-  .send({name:'Vulcan1', color: 'greenish1', size:'earth-like1', moonsNumber:0})
+  .send({name:'Vulcan', color: 'greenish1', size:'earth-like1', moonsNumber:0})
   .end((err, res)=>{
     expect(err).to.eql(null);
     console.log(err);
-    expect(res.body.name).to.eql('Vulcan1');
     expect(res.body.color).to.eql('greenish1');
     expect(res.body.size).to.eql('earth-like1');
     expect(res.body.moonsNumber).to.eql(0);
