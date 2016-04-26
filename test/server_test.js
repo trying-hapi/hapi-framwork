@@ -47,7 +47,11 @@ describe('the GET', () => {
 
 describe('routes that need a planet in the db', () => {
   beforeEach((done) => {
-    var newPlanet = new Planet({ name: 'Vulcan', color: 'greenish', size: 'earth-like', moonsNumber: 0 });
+    var newPlanet = new Planet({
+      name: 'Vulcan',
+      color: 'greenish',
+      size: 'earth-like',
+      moonsNumber: 0 });
     newPlanet.save((err, data) => {
       if (err) throw err;
       this.planet = data;
