@@ -51,7 +51,8 @@ describe('routes that need a planet in the db', () => {
       name: 'Vulcan',
       color: 'greenish',
       size: 'earth-like',
-      moonsNumber: 0 });
+      moonsNumber: 0
+    });
     newPlanet.save((err, data) => {
       if (err) throw err;
       this.planet = data;
